@@ -13,9 +13,10 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <TextBox x:Name="NewItemTextBox" Margin="10,10,190,10" VerticalContentAlignment="Center" MaxLength="135"/>
-        <Button Content="Add Task" Width="80" Height="30" Grid.Row="0" Margin="10,10,100,10" HorizontalAlignment="Right" VerticalAlignment="Center" Click="AddItem_Click"/>
-        <Button Content="Export" Width="80" Height="30" Grid.Row="0" Margin="10" HorizontalAlignment="Right" VerticalAlignment="Center" Click="Export_Click"/>
+        <TextBox x:Name="NewItemTextBox" Margin="10,10,180,10" VerticalContentAlignment="Center" MaxLength="135"/>
+        <Button Content="Add Task" Width="80" Height="30" Grid.Row="0" Margin="10,10,95,10" HorizontalAlignment="Right" VerticalAlignment="Center" Click="AddItem_Click"/>
+        <Button Content="Import" Width="80" Height="30" Grid.Row="0" Margin="10" HorizontalAlignment="Right" VerticalAlignment="Center" Click="Import_Click"/>
+        <Button Content="Export" Width="80" Height="30" Grid.Row="0" Margin="0,45,10,0" HorizontalAlignment="Right" VerticalAlignment="Top" Click="Export_Click" Grid.RowSpan="2"/>
 
         <!-- Header Row -->
         <Grid Grid.Row="1" Margin="10,0,10,10">
@@ -25,7 +26,7 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <TextBlock Text="Done |" FontWeight="Bold"/>
-            <TextBlock Text="Task" Grid.Column="1" FontWeight="Bold" Margin="5,0"/>
+            <TextBlock Text="Task" Grid.Column="1" FontWeight="Bold" Margin="5,0,90,0"/>
         </Grid>
 
         <ListBox x:Name="lstToDoItems" Grid.Row="2" Margin="10,0,10,10" >

@@ -65,5 +65,55 @@ namespace ToDoApp
                 MessageBox.Show("There are no tasks to export.", "Error while exporting!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
+        private void Import_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.DefaultExt = ".json";
+            openFileDialog.Filter = "JSON documents (.json)|*.json";
+
+            bool? result = openFileDialog.ShowDialog();
+
+            if(result == true)
+            {
+                string filename = openFileDialog.FileName;
+
+                try
+                {
+                    string jsonString = File.ReadAllText(filename);
+
+                    List<ToDoItem> importedItems = JsonSerializer.Deserialize<List<ToDoItem>>(jsonString);
+
+                    if(importedItems != null)
+                    {
+                        MessageBoxResult messageBoxResult = MessageBox.Show(
+                            "Do you want to override the current tasks?",
+                            "Import Tasks",
+                            MessageBoxButton.YesNo,
+                            MessageBoxImage.Question
+                        );
+
+                        if(messageBoxResult == MessageBoxResult.Yes)
+                        {
+                            ToDoItems.Clear();
+                            foreach(var item in importedItems)
+                            {
+                                ToDoItems.Add(item);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("No valid tasks found in the selected file.", "Import", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show($"An error occurred while importing tasks: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+
+
+        }
     }
 }
